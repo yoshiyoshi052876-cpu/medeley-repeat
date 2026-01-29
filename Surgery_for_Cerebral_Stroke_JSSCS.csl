@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl"
+       version="1.0"
+       class="in-text"
+       default-locale="ja-JP">
+  <info>
+    <title>脳卒中の外科 (Surgery for Cerebral Stroke)</title>
+    <id>http://www.zotero.org/styles/surgery-for-cerebral-stroke-jsscs</id>
+    <link href="http://www.zotero.org/styles/surgery-for-cerebral-stroke-jsscs" rel="self"/>
+    <author>
+      <name>Custom</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="medicine"/>
+    <updated>2026-01-29</updated>
+  </info>
+
+  <!-- 著者 -->
+  <macro name="author">
+    <names variable="author" delimiter=", " et-al-min="4" et-al-use-first="3">
+      <name initialize-with="."/>
+      <et-al prefix=", "/>
+    </names>
+  </macro>
+
+  <!-- 雑誌名 -->
+  <macro name="journal">
+    <choose>
+      <if variable="container-title-short">
+        <text variable="container-title-short"/>
+      </if>
+      <else>
+        <text variable="container-title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- 年 -->
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <!-- 本文中引用（肩番号） -->
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" delimiter=","/>
+  </citation>
+
+  <!-- 文献リスト -->
+  <bibliography hanging-indent="true">
+    <sort>
+      <key variable="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" suffix=") "/>
+      <text macro="author" suffix=": "/>
+      <text variable="title" suffix=". "/>
+      <text macro="journal" suffix=" "/>
+      <text variable="volume"/>
+      <choose>
+        <if variable="issue">
+          <text prefix="(" variable="issue" suffix=")"/>
+        </if>
+      </choose>
+      <text prefix=":" variable="page" suffix=", "/>
+      <text macro="year"/>
+      <text value="."/>
+    </layout>
+  </bibliography>
+</style>
