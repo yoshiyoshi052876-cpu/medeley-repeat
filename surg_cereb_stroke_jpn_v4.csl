@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" page-range-format="expanded" default-locale="en-US">
+  <info>
+    <title>Surgery for Cerebral Stroke (Jpn) — Numeric superscript with right parenthesis; alphabetized, numbered bibliography</title>
+    <title-short>Surg Cereb Stroke Jpn</title-short>
+    <id>http://www.zotero.org/styles/surg-cereb-stroke-jpn-v4</id>
+    <link rel="self" href="http://www.zotero.org/styles/surg-cereb-stroke-jpn-v4"/>
+    <category citation-format="numeric"/>
+    <category field="medicine"/>
+    <updated>2026-01-26T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <!-- Use 'et al:' (colon) and 3 authors listed when >=4 -->
+  <locale>
+    <terms>
+      <term name="et-al">et al:</term>
+    </terms>
+  </locale>
+
+  <!-- Macros -->
+  <macro name="author">
+    <names variable="author" and="text" delimiter=", " delimiter-precedes-last="always" delimiter-precedes-et-al="always" et-al-min="4" et-al-use-first="3">
+      <name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", " />
+      <et-al term="et-al"/>
+    </names>
+  </macro>
+
+  <macro name="editor">
+    <names variable="editor" and="text" delimiter=", " delimiter-precedes-last="always" delimiter-precedes-et-al="always" et-al-min="4" et-al-use-first="3">
+      <name name-as-sort-order="all" sort-separator=" " initialize-with="." delimiter=", " />
+      <et-al term="et-al"/>
+    </names>
+  </macro>
+
+  <macro name="issued-year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="container-title">
+    <text variable="container-title" form="short"/>
+  </macro>
+
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+
+  <macro name="pages">
+    <text variable="page"/>
+  </macro>
+
+  <macro name="access">
+    <group delimiter=". ">
+      <text variable="URL"/>
+      <date variable="accessed" prefix="Accessed ">
+        <date-part name="year"/>
+        <date-part name="month" prefix=" "/>
+        <date-part name="day" prefix=" "/>
+      </date>
+      <text variable="DOI" prefix="doi:"/>
+    </group>
+  </macro>
+
+  <!-- In-text citations: superscript with right parenthesis -->
+  <citation collapse="citation-number" delimiter=", ">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" suffix=")">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <!-- Bibliography: alphabetized by author; show citation numbers before entries -->
+  <bibliography hanging-indent="true" line-spacing="1" entry-spacing="0">
+    <sort>
+      <key variable="author"/>
+      <key variable="issued" sort="ascending"/>
+      <key variable="title"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" suffix=") "/>
+      <choose>
+        <if type="article-journal">
+          <group delimiter=" ">
+            <text macro="author" suffix=" "/>
+            <text macro="title" suffix=". "/>
+            <group delimiter=" ">
+              <text macro="container-title"/>
+              <group delimiter=";">
+                <text macro="issued-year"/>
+                <group delimiter=":">
+                  <text variable="volume"/>
+                  <text macro="pages"/>
+                </group>
+              </group>
+            </group>
+          </group>
+        </if>
+        <else-if type="chapter paper-conference">
+          <group delimiter=" ">
+            <text macro="author" suffix=" "/>
+            <text macro="title" suffix=". "/>
+            <group>
+              <text term="in" text-case="capitalize-first" suffix=": "/>
+              <text macro="editor"/>
+              <text variable="container-title" prefix=". "/>
+            </group>
+            <group delimiter="; ">
+              <text macro="publisher"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="pages" prefix=": "/>
+          </group>
+        </else-if>
+        <else-if type="book">
+          <group delimiter=" ">
+            <text macro="author" suffix=" "/>
+            <text macro="title" font-style="italic"/>
+            <group delimiter="; " prefix=". ">
+              <text macro="publisher"/>
+              <text macro="issued-year"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=" ">
+            <text macro="author" suffix=" "/>
+            <text macro="title" suffix=". "/>
+            <group delimiter="; ">
+              <text variable="container-title"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="pages" prefix=": "/>
+            <text macro="access" prefix=". "/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
